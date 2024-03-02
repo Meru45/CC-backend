@@ -8,7 +8,7 @@ require("dotenv");
 const dashboard = require("./routes/dashboardWrapper");
 const authRouter = require("./routes/auth/auth.router");
 
-const verifyToken = require("./middlewares/verifyToken");
+// const verifyToken = require("./middlewares/verifyToken");
 
 const app = express();
 
@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "..", "public")));
 
-app.use("/dashboard", verifyToken, dashboard);
+app.use("/dashboard", dashboard);
 app.use("/auth", authRouter);
 
 app.get("/*", (req, res) => {

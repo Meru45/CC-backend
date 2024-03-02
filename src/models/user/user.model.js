@@ -10,7 +10,7 @@ async function createUserObject(user) {
         throw new Error(err.message);
     }
 
-    const newUser = object.assign(user, {
+    const newUser = Object.assign(user, {
         patientDetails: [],
     });
 
@@ -18,9 +18,9 @@ async function createUserObject(user) {
 }
 
 async function createUser(user) {
-    await users.findByIdAndUpdate(
+    await users.findOneAndUpdate(
         {
-            userId: user.userEmail,
+            userId: user.userId,
         },
         user,
         {

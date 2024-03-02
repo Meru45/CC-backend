@@ -3,12 +3,12 @@ const users = require("./auth.mongo");
 
 async function findUser(id) {
     return await users.findOne({
-        id: id,
+        userId: id,
     });
 }
 
 async function checkPassword(pass, id) {
-    const user = await findUser({ id: id });
+    const user = await findUser({ userId: id });
     return await bcrypt.compare(pass, user.password);
 }
 
@@ -17,10 +17,10 @@ async function createCredentials(id, pass) {
 
     await users.findOneAndUpdate(
         {
-            id: id,
+            userId: id,
         },
         {
-            id: id,
+            userId: id,
             password: passwordHash,
         },
         {
@@ -33,11 +33,11 @@ async function updatePassword(id, newPassword) {
     const hashedPassword = await bcrypt.hash(newPassword, 10);
 
     const updatedUser = {
-        id: id,
+        userId: id,
         password: hashedPassword,
     };
 
-    await users.findByIdAndUpdate({ id: id }, updatedUser, {
+    await users.findOneAndUpdate({ userId: id }, updatedUser, {
         returnOriginal: false,
     });
 }

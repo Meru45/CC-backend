@@ -37,12 +37,13 @@ async function httpSignUp(req, res) {
         });
     }
 
-    // const exitsUser = await findUser(user.userId);
-    // if (!exitsUser) {
-    //     return res.status(400).json({
-    //         error: "User already exits",
-    //     });
-    // }
+    const exitsUser = await findUser(user.userId);
+    console.log(exitsUser);
+    if (exitsUser) {
+        return res.status(400).json({
+            error: "User already exits",
+        });
+    }
 
     try {
         await addNewUser(user);
