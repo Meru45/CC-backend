@@ -11,4 +11,4 @@ const users = new mongoose.Schema({
     },
 });
 
-module.exports = mongoose.model("User Credentials", users);
+module.exports = mongoose.model("Credentials", users);
