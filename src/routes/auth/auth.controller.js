@@ -9,7 +9,7 @@ const {
 
 const checkRequestData = require("../../services/checkRequestData");
 
-const { addNewUser } = require("../../models/user/user.model");
+const { addNewUser, getUserById } = require("../../models/user/user.model");
 
 const { createJWT } = require("../../services/createJWT");
 
@@ -44,6 +44,7 @@ const httpLogin = asyncHandler(async (req, res) => {
     }
 
     const { accessToken, refreshToken } = await createJWT(userId);
+    const user = await getUserById(userId);
 
     res.cookie("jwt", refreshToken, {
         httpOnly: true,
@@ -55,6 +56,7 @@ const httpLogin = asyncHandler(async (req, res) => {
     res.status(200).json({
         accessToken: accessToken,
         userLoggedIn: true,
+        userInfo: user,
     });
     console.log(req);
 });

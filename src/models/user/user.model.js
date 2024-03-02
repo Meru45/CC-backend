@@ -17,6 +17,17 @@ async function createUserObject(user) {
     return newUser;
 }
 
+async function getUserById(userId) {
+    const user = await users.findOne(
+        {
+            userId: userId,
+        },
+        { __v: 0, _id: 0 }
+    );
+
+    return user;
+}
+
 async function createUser(user) {
     await users.findOneAndUpdate(
         {
@@ -34,4 +45,4 @@ async function addNewUser(user) {
     await createUser(newUser);
 }
 
-module.exports = { addNewUser };
+module.exports = { addNewUser, getUserById };
