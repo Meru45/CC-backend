@@ -14,7 +14,7 @@ const app = express();
 
 app.use(
     cors({
-        origin: "http://localhost:3000", //change this in production
+        origin: "http://localhost:4000", //change this in production
     })
 );
 app.use(morgan("combined"));
