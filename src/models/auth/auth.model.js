@@ -8,7 +8,7 @@ async function findUser(id) {
 }
 
 async function checkPassword(pass, id) {
-    const user = await findUser({ userId: id });
+    const user = await findUser(id);
     return await bcrypt.compare(pass, user.password);
 }
 

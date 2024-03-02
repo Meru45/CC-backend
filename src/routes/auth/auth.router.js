@@ -15,7 +15,7 @@ const authRouter = express.Router();
 
 authRouter.route("/login").post(loginLimiter, httpLogin);
 authRouter.route("/logout").post(httpLogout);
-authRouter.route("/signup").post(httpSignUp);
+authRouter.route("/singup").post(httpSignUp);
 authRouter.route("/update-password").put(verifyToken, httpUpdatePassowrd);
 authRouter.route("/refresh").get(httpRefresh);
 
