@@ -5,8 +5,6 @@ require("dotenv").config;
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
 const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET;
 
-const { findUser } = require("../models/auth/auth.model");
-
 async function createJWT(id) {
     const accessToken = jwt.sign(
         {
